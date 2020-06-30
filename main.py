@@ -41,7 +41,7 @@ def widtdrawFromCard(idCard, tabulka, amount, workbook):
             index += 1
     if sheet["B" + str(row)].value - amount >= 0:
         sheet["B" + str(row)].value -= amount 
-        print("Z karty bylo uspesne odebrano " + amount + "kc \n")
+        print("Z karty bylo uspesne odebrano " + str(amount) + "kc \n")
     else:
         print("Nedostatek penez\n")
     workbook.save("test.xlsx")
@@ -56,7 +56,7 @@ def addToCard(idCard, tabulka, amount, workbook):
         else:
             index += 1
     tabulka["B" + str(row)].value += amount
-    print("Na kartu bylo supesne pridano" + amount + "kc\n")
+    print("Na kartu bylo supesne pridano" + str(amount) + "kc\n")
     workbook.save("test.xlsx")
 def checkUserWantedFunction():
     userInput = input("Zobrazeni informaci [1]\nPridani penez na kartu [2]\nOdebrani penez z karty [3]\nOdebrani karty[4]\nZavreni aplikace[e]\nVytvoreni nove karty[n]\n")
