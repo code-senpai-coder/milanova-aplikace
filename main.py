@@ -112,12 +112,15 @@ def mainDef():
         mainDef()
     elif userIn == "n":
         addNewCard(int(input("Zadej cislo nove karty\n")), sheet, wb, findLastRow(sheet))
+        time.sleep(0.3)
         mainDef()
     elif userIn == "4":
         deleteCard(int(input("Zadej cislo karty kterou chces odstranit\n")),sheet, wb )
+        time.sleep(0.3)
         mainDef()
     elif userIn == "5":
         newBalance(sheet, int(input("Zadej cislo karty\n")), wb,  float(input("Zadej novy zustatek\n")))
+        time.sleep(0.3)
         mainDef()
     elif userIn == "e":
         pass
