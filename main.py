@@ -98,16 +98,21 @@ app code below
 #addNewCard(111, sheet, wb, findLastRow(sheet))
 def mainDef():
     userIn = str(checkUserWantedFunction())
+    userInput_ = 0
     if userIn == "1":
         print("Pocet penez na ucte je " + str(showCardInfo(int(input('Zadej cislo karty\n')), sheet)) + "kc")
         time.sleep(0.3)
         mainDef()
     elif userIn == "2":
-        addToCard(int(input("Zadej cislo karty\n")), sheet, float(input("Zadej mnozstvi penez na vlozeni\n")), wb)
+        userInput_ = input("Zadej cislo karty\n")
+        print("Pocet penez na karte je: " + str(showCardInfo(float(userInput_), sheet)) + "kc")
+        addToCard(int(userInput_), sheet, float(input("Zadej mnozstvi penez na vlozeni\n")), wb)
         time.sleep(0.3)
         mainDef()
     elif userIn == "3":
-        widtdrawFromCard(int(input("Zadej cislo karty\n")), sheet, float(input("Zadej mnozstvi penez na vybrani\n")), wb)
+        userInput_ = input("Zadej cislo karty\n")
+        print("Pocet penez na karte je: " + str(showCardInfo(float(userInput_), sheet)) + "kc")
+        widtdrawFromCard(int(userInput_), sheet, float(input("Zadej mnozstvi penez na vybrani\n")), wb)
         time.sleep(0.3)
         mainDef()
     elif userIn == "n":
