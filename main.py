@@ -59,7 +59,7 @@ def addToCard(idCard, tabulka, amount, workbook):
     print("Na kartu bylo supesne pridano" + str(amount) + "kc\n")
     workbook.save("test.xlsx")
 def checkUserWantedFunction():
-    userInput = input("Zobrazeni informaci [1]\nPridani penez na kartu [2]\nOdebrani penez z karty [3]\nOdebrani karty[4]\nZavreni aplikace[e]\nVytvoreni nove karty[n]\n")
+    userInput = input("Zobrazeni informaci [1]\nPridani penez na kartu [2]\nOdebrani penez z karty [3]\nOdebrani karty[4]\nZavreni aplikace[e]\nNastaveni zustatku [5]\nVytvoreni nove karty[n]\n")
     return userInput
 def deleteCard(cardId, tabulka, workbook):
     main = True
@@ -73,6 +73,17 @@ def deleteCard(cardId, tabulka, workbook):
             index +=1
     wb.save("test.xlsx")
     print("Karta uspesne odebrana")
+def newBalance(tabulka, cardId, workbook, amount):
+    main = True
+    index = 1
+    while main:
+        if tabulka["A" + str(index)].value == cardId:
+            tabulka["B" + str(index)].value = amount
+            main = False
+        else:
+            index +=1
+    workbook.save("test.xlsx")
+    print("Zustatek nastaven")
 
 #wdeleteCard(222, sheet, wb)
 #print(showCardInfo(123, sheet))
@@ -83,6 +94,7 @@ def deleteCard(cardId, tabulka, workbook):
 functions above
 app code below
 """
+#newBalance(sheet, 50, wb, 111)
 #addNewCard(111, sheet, wb, findLastRow(sheet))
 def mainDef():
     userIn = str(checkUserWantedFunction())
@@ -99,10 +111,13 @@ def mainDef():
         time.sleep(0.3)
         mainDef()
     elif userIn == "n":
-        addNewCard(int(input("Zadej cislo nove karty")), sheet, wb, findLastRow(sheet))
+        addNewCard(int(input("Zadej cislo nove karty\n")), sheet, wb, findLastRow(sheet))
         mainDef()
     elif userIn == "4":
         deleteCard(int(input("Zadej cislo karty kterou chces odstranit\n")),sheet, wb )
+        mainDef()
+    elif userIn == "5":
+        newBalance(sheet, int(input("Zadej cislo karty\n")), wb,  float(input("Zadej novy zustatek\n")))
         mainDef()
     elif userIn == "e":
         pass
