@@ -59,8 +59,22 @@ def addToCard(idCard, tabulka, amount, workbook):
     print("Na kartu bylo supesne pridano" + amount + "kc\n")
     workbook.save("test.xlsx")
 def checkUserWantedFunction():
-    userInput = input("Zobrazeni informaci [1]\nPridani penez na kartu [2]\nOdebrani penez z karty [3]\nZavreni aplikace[e]\nVytvoreni nove karty[n]\n")
+    userInput = input("Zobrazeni informaci [1]\nPridani penez na kartu [2]\nOdebrani penez z karty [3]\nOdebrani karty[4]\nZavreni aplikace[e]\nVytvoreni nove karty[n]\n")
     return userInput
+def deleteCard(cardId, tabulka, workbook):
+    main = True
+    index  = 1
+    while main:
+        if tabulka["A" + str(index)].value == cardId:
+            tabulka["A" + str(index)].value = None
+            tabulka["B" + str(index)].value = None
+            main = False
+        else:
+            index +=1
+    wb.save("test.xlsx")
+    print("Karta uspesne odebrana")
+
+#wdeleteCard(222, sheet, wb)
 #print(showCardInfo(123, sheet))
 #widtdrawFromCard(123, sheet, 20, wb)
 #addToCard(123, sheet, 34, wb)
@@ -86,6 +100,9 @@ def mainDef():
         mainDef()
     elif userIn == "n":
         addNewCard(int(input("Zadej cislo nove karty")), sheet, wb, findLastRow(sheet))
+        mainDef()
+    elif userIn == "4":
+        deleteCard(int(input("Zadej cislo karty kterou chces odstranit\n")),sheet, wb )
         mainDef()
     elif userIn == "e":
         pass
